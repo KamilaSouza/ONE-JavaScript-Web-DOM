@@ -1,3 +1,6 @@
+import FinishBotton from "./components/finishTask.js"
+import DeleteBotton from "./components/deleteTask.js"
+
 const createTask = (event) => {
 
     event.preventDefault()
@@ -12,6 +15,8 @@ const createTask = (event) => {
 
     task.innerHTML = content
 
+    task.appendChild(FinishBotton())
+    task.appendChild(DeleteBotton())
     list.appendChild(task)
     input.value = " "
 }
@@ -19,3 +24,4 @@ const createTask = (event) => {
 const newTask = document.querySelector('[data-form-button]')
 
 newTask.addEventListener('click', createTask)
+
