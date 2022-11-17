@@ -1,22 +1,24 @@
-const DeleteBotton = () => {
+const DeleteBotton = (update, id) => {
     const deleteBotton = document.createElement('button')
 
+    deleteBotton.classList.add('delete-button')
     deleteBotton.innerText = 'deletar'
-    deleteBotton.addEventListener('click', (deleteTask)
+    deleteBotton.addEventListener('click', () => deleteTask(update, id)
     )
 
     return deleteBotton
 
 }
 
-const deleteTask = (event) => {
-    const deleteBotton = event.target
+const deleteTask = (update, id) => {
 
-    const completedTask = deleteBotton.parentElement
+    const index = id
+    const registeredTasks = JSON.parse(localStorage.getItem('tasks'))
 
-    completedTask.remove()
+    registeredTasks.splice(index, 1)
 
-    return deleteBotton
+    localStorage.setItem('tasks', JSON.stringify(registeredTasks))
+    update()
 }
 
 export default DeleteBotton
